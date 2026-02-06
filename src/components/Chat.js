@@ -4,9 +4,11 @@ import axios from "axios";
 import MessageList from "./MessageList";
 import "./chat.css";
 
+
+
 const socket = io("http://localhost:5001");
 
-export const Chat = ({ user }) => {
+export const Chat = ({ user ,setUser }) => {
   const [users, setUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -19,7 +21,7 @@ export const Chat = ({ user }) => {
         const { data } = await axios.get("http://localhost:5001/users", {
           params: { currentUser: user.username },
         });
-        setUsers(data);
+        setUsers(data?.users);
       } catch (error) {
         console.error("Error fetching users", error);
       }
@@ -44,7 +46,7 @@ export const Chat = ({ user }) => {
       const { data } = await axios.get("http://localhost:5001/messages", {
         params: { sender: user.username, receiver },
       });
-      setMessages(data);
+      setMessages(data?.messages);
       setCurrentChat(receiver);
     } catch (error) {
       console.error("Error fetching messages", error);
@@ -65,6 +67,18 @@ export const Chat = ({ user }) => {
   return (
     <div className="chat-container">
       <h2>Welcome, {user.username}</h2>
+               <button
+  className="btn btn-danger"
+  onClick={() => {
+    localStorage.removeItem("chatUser");
+
+  window.location.reload();   
+
+  }}
+>
+  Logout
+</button>
+
       <div className="chat-list">
         <h3>Chats</h3>
         {users.map((u) => (
@@ -81,6 +95,8 @@ export const Chat = ({ user }) => {
       </div>
       {currentChat && (
         <div className="chat-window">
+
+
           <h5>You are chatting with {currentChat}</h5>
           <MessageList messages={messages} user={user} />
           <div className="message-field">

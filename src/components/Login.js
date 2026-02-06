@@ -11,7 +11,12 @@ const Login = ({ setUser }) => {
         username,
         password,
       });
-      setUser(data);
+   
+      localStorage.setItem("chatUser", JSON.stringify(data));
+setUser(data);
+
+
+    
     } catch (error) {
       console.error(error.response?.data?.message || "Error logging in");
     }

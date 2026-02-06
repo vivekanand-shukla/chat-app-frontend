@@ -16,7 +16,12 @@ const Register = ({ setUser }) => {
       setRegistrationSuccess(
         "You are registered successfully. Proceed to login."
       );
-      setUser(data);
+     localStorage.setItem("chatUser", JSON.stringify(data));
+setUser(data);
+
+
+
+
     } catch (error) {
       console.error(error.response?.data?.message || "Error registering user");
       setRegistrationSuccess(

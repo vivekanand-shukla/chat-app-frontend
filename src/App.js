@@ -6,7 +6,11 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+const [user, setUser] = useState(() => {
+  const saved = localStorage.getItem("chatUser");
+  return saved ? JSON.parse(saved) : null;
+});
+
 
   return (
     <div className="app">
@@ -23,7 +27,7 @@ const App = () => {
           </div>
         </div>
       ) : (
-        <Chat user={user} />
+        <Chat user={user} setUser={setUser} />
       )}
     </div>
   );
