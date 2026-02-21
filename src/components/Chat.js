@@ -6,7 +6,7 @@ import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
 
 
-const socket = io("http://localhost:5001");
+const socket = io("https://chat-app-backend-qszh.onrender.com");
 
 export const Chat = ({ user ,setUser }) => {
 const [showEmoji, setShowEmoji] = useState(false);
@@ -20,7 +20,7 @@ const [showEmoji, setShowEmoji] = useState(false);
     // Fetch all users excluding the current user
     const fetchUsers = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5001/users", {
+        const { data } = await axios.get("https://chat-app-backend-qszh.onrender.com/users", {
           params: { currentUser: user.username },
         });
         setUsers(data?.users);
@@ -53,7 +53,7 @@ const [showEmoji, setShowEmoji] = useState(false);
 
   const fetchMessages = async (receiver) => {
     try {
-      const { data } = await axios.get("http://localhost:5001/messages", {
+      const { data } = await axios.get("https://chat-app-backend-qszh.onrender.com/messages", {
         params: { sender: user.username, receiver },
       });
 
