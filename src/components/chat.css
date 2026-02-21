@@ -83,7 +83,7 @@ html, body {
 
 .btn-prime {
   background: #0d6efd;
-  color: white;
+  color: rgb(15, 13, 13);
   border: none;
   padding: 8px 14px;
   border-radius: 5px;
@@ -111,5 +111,9 @@ html, body {
 
   .chat-window {
     height: 65%;
+  }
+  .a {
+    width: 60%;
+
   }
 }

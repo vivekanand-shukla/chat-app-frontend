@@ -130,8 +130,8 @@ const [showEmoji, setShowEmoji] = useState(false);
                 }
               />
             )}
-
-            <input
+             
+            <input className="a"
               type="text"
               placeholder="Type a message..."
               value={currentMessage}
@@ -143,7 +143,7 @@ const [showEmoji, setShowEmoji] = useState(false);
                 });
               }}
             />
-
+              
             <button className="btn-prime" onClick={sendMessage}>
               Send
             </button>
